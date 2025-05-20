@@ -15,7 +15,7 @@ module controller_tb;
     wire ped_wait_NS, ped_wait_EW;
 
     // Instantiate the DUT
-    controller #(
+    top #(
         .CLK_FREQ(CLK_FREQ)
     ) uut (
         .clk(clk),

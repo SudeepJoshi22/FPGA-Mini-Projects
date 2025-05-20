@@ -1,6 +1,6 @@
 `default_nettype none
 
-module controller #(
+module top #(
 parameter CLK_FREQ = 50000000)(
 	input  wire 	clk,
 	input  wire 	rst,		// synchronous active high

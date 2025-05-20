@@ -36,7 +36,7 @@ parameter STATE_ON_RESET = 1			// To Indicate the State on Reset, 1 - Red, 0 - G
 	always @(PS, pulse_10s, pulse_1s) begin
 		case(PS) 
 			RED:		begin
-						if(pulse_10s) begin
+						if(pulse_10s & !priority) begin
 							NS 		<= 	YELLOW0;
 							reset_counter 	<= 	1;
 						end
@@ -56,7 +56,7 @@ parameter STATE_ON_RESET = 1			// To Indicate the State on Reset, 1 - Red, 0 - G
 						end
 					end
 			GREEN:		begin
-						if(pulse_10s | (pedestrian & priority)) begin
+						if((pulse_10s & priority) | (pedestrian & priority)) begin
 							NS 		<= 	YELLOW1;
 							reset_counter 	<= 	1;
 						end
