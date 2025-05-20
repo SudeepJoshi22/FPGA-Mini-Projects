@@ -54,11 +54,17 @@ module controller_tb;
         rst = 0;
 
         // Random pedestrian request generation
-        repeat (100) begin
-            #100;  // wait some time (adjust as needed for realism)
-            ped_NS = $random % 2;
-            ped_EW = $random % 2;
-        end
+	repeat (100) begin
+	  // wait some random number of cycles between pulses
+	  repeat ($urandom_range(5, 20)) @(posedge clk);
+	
+	  // generate a one-cycle pulse
+	  ped_NS = $urandom_range(0,1);
+	  ped_EW = $urandom_range(0,1);
+	  @(posedge clk);
+	  ped_NS = 0;
+	  ped_EW = 0;
+	end
 
         // Wait some time after last request
         #200;

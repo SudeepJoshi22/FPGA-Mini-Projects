@@ -5,7 +5,8 @@ parameter STATE_ON_RESET = 1			// To Indicate the State on Reset, 1 - Red, 0 - G
 	input 	wire	rst,
 	input 	wire 	pulse_10s,		// Pulse to indicate 10 seconds
 	input 	wire 	pulse_1s,		// Pulse to indicate 1 seconds
-	input	wire	pedestrian,
+	input	wire	pedestrian,		// Signal Indicating Pedestrian request
+	input	wire	priority,		// Signal to give priority to green light over pedestrian
 	output 	reg	reset_counter,		// Reset the counter on every state change
 	output	reg	red_light,
 	output 	reg 	yellow_light,
@@ -55,7 +56,7 @@ parameter STATE_ON_RESET = 1			// To Indicate the State on Reset, 1 - Red, 0 - G
 						end
 					end
 			GREEN:		begin
-						if(pulse_10s | pedestrian) begin
+						if(pulse_10s | (pedestrian & priority)) begin
 							NS 		<= 	YELLOW1;
 							reset_counter 	<= 	1;
 						end

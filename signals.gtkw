@@ -1,0 +1,97 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Tue May 20 14:49:07 2025
+[*]
+[dumpfile] "/home/sudeep/FPGA/traffic_controller/waves.vcd"
+[dumpfile_mtime] "Tue May 20 14:48:27 2025"
+[dumpfile_size] 65212
+[savefile] "/home/sudeep/FPGA/traffic_controller/signals.gtkw"
+[timestart] 0
+[size] 1920 1001
+[pos] -1 -1
+*-18.364599 64100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] controller_tb.
+[treeopen] controller_tb.uut.
+[sst_width] 278
+[signals_width] 226
+[sst_expanded] 1
+[sst_vpaned_height] 297
+@28
+controller_tb.clk
+controller_tb.uut.clk_div
+controller_tb.rst
+controller_tb.uut.rst_downstream
+@200
+-
+@28
+controller_tb.uut.priority_inst.clk
+controller_tb.uut.priority_inst.rst
+@22
+controller_tb.uut.priority_inst.counter[4:0]
+@28
+controller_tb.uut.priority_inst.priority
+@200
+-
+-East-West
+-
+@28
+controller_tb.ped_EW
+@200
+-
+@28
+[color] 1
+controller_tb.EW_red
+[color] 3
+controller_tb.EW_yellow
+controller_tb.EW_green
+@200
+-
+@28
+[color] 6
+controller_tb.ped_wait_EW
+@200
+-
+@28
+controller_tb.uut.counter_pulse_inst_EW.pulse_1s
+controller_tb.uut.counter_pulse_inst_EW.pulse_10s
+@200
+-
+-North-South
+-
+@28
+controller_tb.ped_NS
+@200
+-
+@28
+[color] 1
+controller_tb.NS_red
+[color] 3
+controller_tb.NS_yellow
+controller_tb.NS_green
+@200
+-
+@29
+[color] 6
+controller_tb.ped_wait_NS
+@200
+-
+@28
+controller_tb.uut.counter_pulse_inst_NS.pulse_1s
+controller_tb.uut.counter_pulse_inst_NS.pulse_10s
+@200
+-
+-
+@28
+controller_tb.uut.counter_pulse_inst_EW.clk
+controller_tb.uut.counter_pulse_inst_EW.rst
+@22
+controller_tb.uut.counter_pulse_inst_EW.counter[3:0]
+@28
+controller_tb.uut.counter_pulse_inst_EW.pulse_1s
+controller_tb.uut.counter_pulse_inst_EW.pulse_10s
+controller_tb.uut.ped_NS_pulse
+controller_tb.uut.ped_EW_pulse
+@200
+-
+[pattern_trace] 1
+[pattern_trace] 0
