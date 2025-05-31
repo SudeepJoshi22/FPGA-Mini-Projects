@@ -1,47 +1,56 @@
-# Advanced Traffic Light Controller (FPGA Implementation)
+# Advanced Traffic Light Controller
 
-This project implements an advanced traffic light controller using Verilog HDL, designed for FPGA platforms. The controller uses a modular architecture to handle traffic signal sequencing and timing based on real-time sensor inputs.
-
----
-
-## 📁 Verilog Design Files
-
-The following Verilog design files are part of the project (excluding testbenches):
-
-- `traffic_controller_adv.v` – **Top-level module** that integrates all submodules.
-- `fsm.v` – Implements the finite state machine (FSM) for traffic signal control.
-- `timer.v` – Generates timing intervals for each traffic phase.
-- `sensor_interface.v` – Interfaces with vehicle sensors to detect traffic presence.
-- `display_control.v` – Controls the outputs to traffic lights based on FSM state.
+This design is based on the this [specification](https://github.com/SudeepJoshi22/FPGA-Mini-Projects/blob/main/Traffic-Controller-Adv/%F0%9F%94%A7%20Mini%20Project%20Challenge.PDF) given here.
 
 ---
 
-## 🧠 Top Module
+## 🔧 Top Module: `top.v`
 
-### `traffic_controller_adv.v`
-This is the main module that orchestrates the overall traffic light system. It instantiates and connects all necessary submodules to manage the logic and hardware interface for an intelligent traffic signal.
+### Description
+
+The `top.v` file serves as the main module of the design. It integrates all supporting modules — `FSM`, `counter`, and `priority`.
+
+
+### Ports
+
+#### **Inputs:**
+
+- `clk`: Clock input
+- `rst`: Synchronous active-high reset
+- `ped_NS`: Pedestrian request signal from North-South direction
+- `ped_EW`: Pedestrian request signal from East-West direction
+
+#### **Outputs:**
+
+- `NS_red`, `NS_yellow`, `NS_green`: North-South traffic light signals
+- `EW_red`, `EW_yellow`, `EW_green`: East-West traffic light signals
+- `ped_wait_NS`: Blinking signal indicating pedestrian is waiting in North-South
+- `ped_wait_EW`: Blinking signal indicating pedestrian is waiting in East-West
 
 ---
 
-## 🔧 Instantiated Modules
+## 🧠 Instantiated Modules
 
-- **`fsm.v`**  
-  Contains the finite state machine logic to control the sequence of traffic light states.
+- **`FSM.v`**  
+  Implements a finite state machine that controls transitions between different traffic light states based on timing and pedestrian requests.
 
-- **`timer.v`**  
-  Provides timing signals that control how long each light remains active.
+- **`counter.v`**  
+  A parameterized counter used to generate time pulses. It has two outputs `pulse_10s` and `pulse_1s` which provide stimulus to FSM to change states.
 
-- **`sensor_interface.v`**  
-  Processes input from sensors (e.g., vehicle presence) and passes relevant signals to the FSM.
-
-- **`display_control.v`**  
-  Generates the appropriate control signals (Red, Yellow, Green) for traffic lights based on FSM outputs.
+- **`priority.v`**  
+  Also a counter, but used to generate times pulses to shift priority between NS and EW directions.
 
 ---
 
-## 🔗 Repository
+## Working of the Design
 
-GitHub Repository: [Traffic-Controller-Adv](https://github.com/SudeepJoshi22/FPGA-Mini-Projects/tree/main/Traffic-Controller-Adv)
+- Priority module shifts pulse for every given priority time parameterized by `PRIORITY_TIME`.
+- If there are no pedestrian request signals then the traffic lights will keep changing as usual. (RED and GREEN light will stay for 10s and in between transition YELLOW light will stay for 1s)
+- If there is a pedestrian request from the direction with active priority, then the traffic light will shift to RED light for 10s and then proceeds with the usual operation.
+- If there is a predestrian request from the direction which doesn't have active priority then the `ped/_wait/_XX` signal will blink.
+- Design can we parameterized for the given clock frequency using the parameter `CLK_FREQ`
+
+---
 
 ---
 
@@ -57,6 +66,6 @@ GitHub Repository: [Traffic-Controller-Adv](https://github.com/SudeepJoshi22/FPG
 
 **Sudeep Joshi**  
 [GitHub Profile](https://github.com/SudeepJoshi22)
-[LinkdIn Profile][https://www.linkedin.com/in/sudeep-joshi-569951207/]
+[LinkdIn Profile](https://www.linkedin.com/in/sudeep-joshi-569951207/)
 
 ---
