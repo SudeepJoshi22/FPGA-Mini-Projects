@@ -1,0 +1,72 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Wed Jun 11 15:26:31 2025
+[*]
+[dumpfile] "/home/sudeep/GitHub/FPGA-Mini-Projects/AXI-Lite-Packet-Validator-Sorter/axi_lite_slave_tb.vcd"
+[dumpfile_mtime] "Wed Jun 11 15:25:47 2025"
+[dumpfile_size] 9053
+[savefile] "/home/sudeep/GitHub/FPGA-Mini-Projects/AXI-Lite-Packet-Validator-Sorter/signals.gtkw"
+[timestart] 0
+[size] 1920 1033
+[pos] -1 -1
+*-15.163109 59700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] axi_lite_slave_tb.
+[treeopen] axi_lite_slave_tb.uut.
+[sst_width] 297
+[signals_width] 314
+[sst_expanded] 1
+[sst_vpaned_height] 308
+@28
+axi_lite_slave_tb.uut.clk
+axi_lite_slave_tb.uut.rst_n
+@200
+-
+@28
+axi_lite_slave_tb.uut.aw_valid
+axi_lite_slave_tb.uut.aw_ready
+@22
+axi_lite_slave_tb.uut.aw_addr[7:0]
+@200
+-
+@29
+axi_lite_slave_tb.uut.w_valid
+@28
+axi_lite_slave_tb.uut.w_ready
+@22
+axi_lite_slave_tb.uut.w_data[31:0]
+@200
+-
+@28
+axi_lite_slave_tb.uut.b_valid
+axi_lite_slave_tb.uut.b_ready
+axi_lite_slave_tb.uut.b_response
+@200
+-
+@28
+axi_lite_slave_tb.uut.is_commit
+axi_lite_slave_tb.uut.is_addr_0
+@200
+-
+@28
+axi_lite_slave_tb.uut.ir_data_registered
+axi_lite_slave_tb.uut.is_pkt_valid
+@22
+axi_lite_slave_tb.uut.ir_w_data[31:0]
+@200
+-Valid FIFO
+@28
+axi_lite_slave_tb.uut.valid_fifo_inst.wr_en
+@22
+axi_lite_slave_tb.uut.valid_pkt_data[31:0]
+axi_lite_slave_tb.uut.valid_fifo_inst.fifo_count[4:0]
+@200
+-
+-
+-Invalid FIFO
+@28
+axi_lite_slave_tb.uut.invalid_fifo_inst.wr_en
+@22
+axi_lite_slave_tb.uut.invalid_pkt_data[31:0]
+axi_lite_slave_tb.uut.invalid_fifo_inst.fifo_count[4:0]
+[pattern_trace] 1
+[pattern_trace] 0

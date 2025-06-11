@@ -90,13 +90,30 @@ parameter BUFFER_SIZE = 16
 
 	//// Sort the valid and invalid packets between Valid and Invalid FIFOs ////
 	wire	[31:0]	valid_pkt_data, invalid_pkt_data;
-	wire		wr_valid, wr_invalid;
+	reg		wr_valid, wr_invalid;
 
-	assign	wr_valid	=	is_pkt_valid;
-	assign	wr_invalid	=	~is_pkt_valid;
+	always @(posedge clk) begin
+		if(!rst_n) begin
+			wr_valid 	<= 	1'b0;
+			wr_invalid 	<= 	1'b0;
+		end
+		else if(ir_data_registered && is_pkt_valid && !wr_valid) begin
+			wr_valid	<= 	1'b1;
+		end
+		else if(ir_data_registered && ~is_pkt_valid && !wr_invalid) begin
+			wr_invalid	<=	1'b1;
+		end
+		else begin
+			wr_valid	<=	1'b0;
+			wr_invalid	<=	1'b0;
+		end
+	end
 
-	assign	valid_pkt_data	= 	is_pkt_valid	? 	ir_data_registered	:	32'dZ;
-	assign 	invalid_pkt_data =	is_pkt_valid	? 	32'dZ			: 	ir_data_registered;
+	//assign	wr_valid	=	is_pkt_valid;
+	//assign	wr_invalid	=	~is_pkt_valid;
+
+	assign	valid_pkt_data	= 	is_pkt_valid	? 	ir_w_data	:	32'dZ;
+	assign 	invalid_pkt_data =	is_pkt_valid	? 	32'dZ			: 	ir_w_data;
 	
 	sync_fifo #(
     		.DATA_WIDTH(32),

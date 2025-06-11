@@ -48,17 +48,17 @@ module axi_lite_slave_tb;
     #20 rst_n = 1;
 
     // Packet write and commit task
-    for (i = 0; i < 2; i = i + 1) begin
+    for (i = 0; i < 10; i = i + 1) begin
       // Write address phase
       @(posedge clk);
-      aw_addr  = 8'h00 + (i * 8);
+      aw_addr  = 8'h00; 
       aw_valid = 1;
       @(posedge clk);
       aw_valid = 0;
 
       // Write data phase
       @(posedge clk);
-      if (i == 0)
+      if (i%2 == 0)
         w_data = {8'hA5, 24'h001122};
       else
         w_data = {8'hFF, 24'h334455};
@@ -91,7 +91,6 @@ module axi_lite_slave_tb;
         $display("Packet %0d response: %0b at time %0t", i+1, b_response, $time);
       else
         $display("Packet %0d response timeout at time %0t", i+1, $time);
-      b_ready = 0;
 
       @(posedge clk);
     end
