@@ -88,5 +88,42 @@ parameter BUFFER_SIZE = 16
 	assign		b_valid		=	ir_b_valid;
 	assign		b_response	=	ir_send_response;
 
+	//// Sort the valid and invalid packets between Valid and Invalid FIFOs ////
+	wire	[31:0]	valid_pkt_data, invalid_pkt_data;
+	wire		wr_valid, wr_invalid;
+
+	assign	wr_valid	=	is_pkt_valid;
+	assign	wr_invalid	=	~is_pkt_valid;
+
+	assign	valid_pkt_data	= 	is_pkt_valid	? 	ir_data_registered	:	32'dZ;
+	assign 	invalid_pkt_data =	is_pkt_valid	? 	32'dZ			: 	ir_data_registered;
+	
+	sync_fifo #(
+    		.DATA_WIDTH(32),
+    		.FIFO_DEPTH(BUFFER_SIZE)
+	) valid_fifo_inst (
+	    .clk(clk),
+	    .rst_n(rst_n),
+	    .wr_data(valid_pkt_data),
+	    .wr_en(wr_valid),
+	    .rd_data(),
+	    .rd_en(),
+	    .full(),
+	    .empty()
+	);
+
+	sync_fifo #(
+    		.DATA_WIDTH(32),
+    		.FIFO_DEPTH(BUFFER_SIZE)
+	) invalid_fifo_inst (
+	    .clk(clk),
+	    .rst_n(rst_n),
+	    .wr_data(invalid_pkt_data),
+	    .wr_en(wr_invalid),
+	    .rd_data(),
+	    .rd_en(),
+	    .full(),
+	    .empty()
+	);
 
 endmodule
